@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean
+            class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations" value="classpath:spring.properties"/>
+    </bean>
+
+
+
+    <bean id="DbIdService" class="com.verbort.IdServiceFactoryBean"
+          init-method="init">
+        <property name="provideType" value="DB"/>
+        <property name="url" value="${db.url}"/>
+        <property name="driver" value="${db.driver.class}"/>
+        <property name="user" value="${db.user}"/>
+        <property name="password" value="${db.password}"/>
+        <property name="genMethod" value="1"/>
+    </bean>
+
+    <bean id="ipIdService" class="com.verbort.IdServiceFactoryBean"
+          init-method="init">
+        <property name="provideType" value="IP"/>
+       <property name="ips" value="${ips}"/>
+        <property name="genMethod" value="2"/>
+    </bean>
+
+    <bean id="propIdService" class="com.verbort.IdServiceFactoryBean"
+          init-method="init">
+        <property name="provideType" value="PROP"/>
+        <property name="mechineId" value="${machineId}"/>
+        <property name="genMethod" value="2"/>
+    </bean>
+</beans>
